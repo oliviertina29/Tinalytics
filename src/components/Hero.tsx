@@ -1,72 +1,90 @@
-import React from 'react';
-import { useLanguage } from '../contexts/LanguageContext';
-import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { SITE } from '../config';
+
+const STATS = [
+  { value: '6 samedis', label: 'par parcours' },
+  { value: '3 h', label: 'en direct par séance' },
+  { value: '20 places', label: 'maximum par cohorte' },
+];
+
+const BARS = [38, 52, 45, 63, 58, 74, 69, 88];
+
+const FILTERS = [
+  { label: 'Région', value: 'Toutes' },
+  { label: 'Période', value: '12 mois' },
+  { label: 'Source', value: 'Power Query' },
+];
 
 export function Hero() {
-  const { translations } = useLanguage();
-
   return (
-    <div className="relative min-h-screen overflow-hidden">
-      {/* Animated background particles */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-900 to-black opacity-90" />
-          <img
-            src="https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&q=80"
-            alt=""
-            className="w-full h-full object-cover"
-          />
+    <section
+      id="top"
+      className="mx-auto flex max-w-[1440px] flex-col items-center gap-16 px-5 pb-20 pt-14 md:px-12 lg:flex-row lg:px-24 lg:pb-24 lg:pt-[88px]"
+    >
+      <div className="flex flex-1 flex-col gap-7">
+        <div className="eyebrow">Formations data · en français · en direct</div>
+        <h1 className="m-0 font-display text-5xl font-semibold leading-[1.02] tracking-[-2px] md:text-[72px]">
+          Arrêtez de refaire vos rapports à la main.
+        </h1>
+        <p className="m-0 max-w-[580px] text-lg leading-relaxed text-body md:text-xl">
+          Tinalytics forme les professionnels d'Afrique de l'Ouest à Excel, Power BI et Python, avec des
+          cas concrets de chez nous : microfinance, télécoms, ONG, agriculture. En direct le samedi,
+          depuis n'importe quelle ville.
+        </p>
+        <div className="flex flex-wrap gap-3.5 pt-1">
+          <a href="#inscription" className="btn-primary">
+            Réserver ma place
+          </a>
+          <a href="#inscription" className="btn-outline">
+            Masterclass gratuite
+          </a>
         </div>
-        {/* Animated circles */}
-        {[...Array(5)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute rounded-full bg-indigo-600/20 backdrop-blur-3xl"
-            style={{
-              width: Math.random() * 400 + 200,
-              height: Math.random() * 400 + 200,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              x: [0, Math.random() * 100 - 50],
-              y: [0, Math.random() * 100 - 50],
-            }}
-            transition={{
-              duration: Math.random() * 10 + 10,
-              repeat: Infinity,
-              repeatType: "reverse",
-            }}
-          />
-        ))}
-      </div>
-      
-      <div className="relative pt-32 pb-16 sm:pt-48 sm:pb-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center"
-          >
-            <h1 className="text-5xl sm:text-7xl font-bold text-white mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-indigo-200">
-              {translations.hero.title}
-            </h1>
-            <p className="text-xl sm:text-2xl text-gray-200 mb-10 max-w-3xl mx-auto leading-relaxed">
-              {translations.hero.subtitle}
-            </p>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-4 rounded-lg text-lg font-semibold inline-flex items-center space-x-2 hover:from-indigo-700 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl"
-            >
-              <span>{translations.hero.cta}</span>
-              <ArrowRight className="w-5 h-5" />
-            </motion.button>
-          </motion.div>
+        <div className="mt-2 flex flex-wrap gap-8 border-t border-line pt-5">
+          {STATS.map((s) => (
+            <div key={s.value} className="flex flex-col gap-0.5">
+              <span className="font-display text-[26px] font-semibold">{s.value}</span>
+              <span className="text-sm text-muted">{s.label}</span>
+            </div>
+          ))}
         </div>
       </div>
-    </div>
+
+      <div className="relative h-[520px] w-full max-w-[560px] flex-none sm:h-[560px]">
+        <div className="absolute right-0 top-0 flex h-[440px] w-full flex-col gap-[22px] rounded-3xl bg-forest p-6 sm:w-[520px] sm:p-8">
+          <div className="flex items-center justify-between gap-3">
+            <span className="text-[15px] font-semibold text-cream">Encaissements mensuels</span>
+            <span className="rounded-full bg-gold px-2.5 py-1.5 font-mono text-[11px] text-forest">
+              ACTUALISÉ AUTOMATIQUEMENT
+            </span>
+          </div>
+          <div className="grid grid-cols-3 gap-3">
+            {FILTERS.map((f) => (
+              <div key={f.label} className="flex flex-col gap-1.5 rounded-xl bg-forest-mid p-3.5">
+                <span className="text-xs text-[#B9C9BF]">{f.label}</span>
+                <span className="text-[15px] font-semibold text-cream">{f.value}</span>
+              </div>
+            ))}
+          </div>
+          <div className="flex flex-1 items-end gap-3 border-b border-[#45665A] px-1">
+            {BARS.map((h, i) => (
+              <div
+                key={i}
+                className={`flex-1 rounded-t-md ${i === BARS.length - 1 ? 'bg-gold' : 'bg-forest-soft'}`}
+                style={{ height: `${h}%` }}
+              />
+            ))}
+          </div>
+          <div className="font-mono text-[11px] text-[#B9C9BF]">Tableau de bord réalisé en séance 5</div>
+        </div>
+
+        <div className="absolute bottom-0 left-0 flex w-[330px] max-w-full items-center gap-4 rounded-[20px] border border-line bg-paper p-[18px] shadow-[0_18px_40px_rgba(27,26,23,0.12)]">
+          <img src={SITE.photo} alt="Olivier Tina" className="h-16 w-16 rounded-full object-cover" />
+          <div className="flex flex-col gap-1">
+            <span className="font-mono text-xs uppercase tracking-[1px] text-muted">Votre formateur</span>
+            <span className="text-[17px] font-bold">Olivier Tina</span>
+            <span className="text-sm text-body">Data Analyst · Orange Money</span>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
