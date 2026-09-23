@@ -1,5 +1,7 @@
-import { SITE } from '../config';
+import { SITE, mailtoUrl, whatsappUrl } from '../config';
 import { Wordmark } from './Logo';
+
+const linkClass = 'text-cream no-underline hover:text-clay-light';
 
 export function Footer() {
   return (
@@ -10,15 +12,17 @@ export function Footer() {
           <span className="text-[15px]">Formations data en français, pour l'Afrique de l'Ouest.</span>
         </div>
         <div className="flex flex-wrap gap-x-10 gap-y-3 text-[15px]">
-          <a href={`mailto:${SITE.email}`} className="text-cream no-underline hover:text-clay-light">
+          <a href={mailtoUrl()} className={linkClass}>
             {SITE.email}
           </a>
-          <a href={SITE.linkedin} className="text-cream no-underline hover:text-clay-light">
+          <a href={SITE.linkedin} target="_blank" rel="noopener noreferrer" className={linkClass}>
             LinkedIn
           </a>
-          <a href={SITE.whatsapp} className="text-cream no-underline hover:text-clay-light">
-            WhatsApp
-          </a>
+          {whatsappUrl && (
+            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className={linkClass}>
+              WhatsApp
+            </a>
+          )}
           <span>© {new Date().getFullYear()} Tinalytics</span>
         </div>
       </div>

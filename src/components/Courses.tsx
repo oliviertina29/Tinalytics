@@ -6,7 +6,7 @@ const COURSES = [
     title: "Automatiser ses rapports : d'Excel à Power BI",
     text: 'Pour ceux qui passent leurs journées sur Excel. Vous repartez avec un tableau de bord qui se met à jour tout seul.',
     points: ['Excel solide et tableaux croisés', 'Power Query : fin du copier-coller', 'Power BI et DAX essentiel'],
-    badge: `Cohorte le ${SITE.nextCohortDate}`,
+    badge: SITE.nextCohortDate ? `Cohorte le ${SITE.nextCohortDate}` : 'Inscriptions ouvertes',
     featured: true,
   },
   {

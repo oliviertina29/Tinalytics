@@ -1,4 +1,4 @@
-import { SITE } from '../config';
+import { SITE, formatFcfa, mailtoUrl } from '../config';
 
 const PAYMENTS = ['Orange Money', 'Wave', 'Moov Money'];
 
@@ -46,7 +46,7 @@ export function Pricing() {
             Facture au nom de la structure, inscription de plusieurs agents ou session privée adaptée à vos
             données.
           </span>
-          <a href="#inscription" className="btn-outline mt-auto h-[52px]">
+          <a href={mailtoUrl('Demande de devis – formation Tinalytics')} className="btn-outline mt-auto h-[52px]">
             Demander un devis
           </a>
         </div>
@@ -64,10 +64,13 @@ export function Pricing() {
   );
 }
 
-function Price({ amount, dark = false }: { amount: string; dark?: boolean }) {
+function Price({ amount, dark = false }: { amount: number | null; dark?: boolean }) {
+  if (amount === null) {
+    return <span className="font-display text-[46px] font-semibold">Sur demande</span>;
+  }
   return (
     <span className="font-display text-[46px] font-semibold">
-      {amount}{' '}
+      {formatFcfa(amount)}{' '}
       <span className={`font-sans text-xl font-medium ${dark ? 'text-[#C9C2B4]' : 'text-muted'}`}>FCFA</span>
     </span>
   );

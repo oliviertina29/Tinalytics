@@ -61,12 +61,16 @@ export function Trainer() {
           <div className="flex flex-wrap gap-2.5 pt-4">
             <a
               href={SITE.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex h-11 items-center rounded-full border border-ink px-[18px] text-[15px] font-semibold text-ink no-underline hover:bg-ink hover:text-cream"
             >
               LinkedIn
             </a>
             <a
               href={SITE.github}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex h-11 items-center rounded-full border border-ink px-[18px] text-[15px] font-semibold text-ink no-underline hover:bg-ink hover:text-cream"
             >
               GitHub
