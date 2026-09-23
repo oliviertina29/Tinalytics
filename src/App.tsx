@@ -1,26 +1,32 @@
-import React from 'react';
-import { LanguageProvider } from './contexts/LanguageContext';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { Stats } from './components/Stats';
-import { Services } from './components/Services';
-import { Portfolio } from './components/Portfolio';
-import { Technologies } from './components/Technologies';
-import { Contact } from './components/Contact';
+import { Audience } from './components/Audience';
+import { Courses } from './components/Courses';
+import { Program } from './components/Program';
+import { Trainer } from './components/Trainer';
+import { HowItWorks } from './components/HowItWorks';
+import { Pricing } from './components/Pricing';
+import { Faq } from './components/Faq';
+import { Signup } from './components/Signup';
+import { Footer } from './components/Footer';
 
 function App() {
   return (
-    <LanguageProvider>
-      <div className="min-h-screen">
-        <Navbar />
+    <div className="min-h-screen">
+      <Navbar />
+      <main>
         <Hero />
-        <Stats />
-        <Services />
-        <Portfolio />
-        <Technologies />
-        <Contact />
-      </div>
-    </LanguageProvider>
+        <Audience />
+        <Courses />
+        <Program />
+        <Trainer />
+        <HowItWorks />
+        <Pricing />
+        <Faq />
+        <Signup />
+      </main>
+      <Footer />
+    </div>
   );
 }
 
