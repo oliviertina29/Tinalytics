@@ -16,9 +16,9 @@ type SiteConfig = {
 
 export const SITE: SiteConfig = {
   email: 'olivertina29@gmail.com',
-  linkedin: 'https://linkedin.com/in/djara-olivier-tina',
+  linkedin: 'https://www.linkedin.com/in/djara-olivier-tina/',
   github: 'https://github.com/oliviertina29',
-  whatsappNumber: null,
+  whatsappNumber: '22373344755',
   nextCohortDate: null,
   launchPrice: null,
   individualPrice: null,
