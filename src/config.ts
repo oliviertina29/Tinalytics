@@ -22,7 +22,7 @@ export const SITE: SiteConfig = {
   nextCohortDate: null,
   launchPrice: null,
   individualPrice: null,
-  photo: '/olivier-tina.jpg',
+  photo: `${import.meta.env.BASE_URL}olivier-tina.jpg`,
 };
 
 export const whatsappUrl = SITE.whatsappNumber ? `https://wa.me/${SITE.whatsappNumber}` : null;

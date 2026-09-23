@@ -40,3 +40,8 @@ public/
 ```
 
 Les couleurs et les polices sont définies dans `tailwind.config.js`.
+
+## Déploiement
+
+- **GitHub Pages** : https://oliviertina29.github.io/Tinalytics/ — à chaque push sur `main`, le workflow `.github/workflows/deploy-pages.yml` construit le site et le publie sur la branche `gh-pages` (Settings → Pages → Source : *Deploy from a branch*, `gh-pages` / `root`).
+- **Netlify** : construit `main` avec `npm run build` (publication de `dist/`).
