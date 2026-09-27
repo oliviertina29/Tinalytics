@@ -31,12 +31,33 @@ Tant qu'une valeur vaut `null`, la page affiche un texte de repli (« Inscriptio
 
 ```
 src/
-  config.ts           informations du site
-  App.tsx             assemblage des sections
-  components/         une section par fichier (Hero, Courses, Program, Trainer, Pricing, Faq…)
+  config.ts             coordonnées, date de cohorte, prix
+  data/courses.ts       contenu des parcours (séances, prérequis, objectifs) et FAQ
+  data/quiz.ts          questions et logique du test de niveau
+  pages/                une page par route (accueil, formations, fiche parcours,
+                        entreprises, à propos, inscription, test de niveau, 404)
+  components/           sections et composants réutilisables
+  components/home/      sections de la page d'accueil
 public/
-  favicon.svg
-  olivier-tina.jpg
+  _redirects            routage des pages sur Netlify
+  favicon.svg, olivier-tina.jpg
 ```
 
-Les couleurs et les polices sont définies dans `tailwind.config.js`.
+## Pages et fonctionnalités
+
+| Route | Contenu |
+| --- | --- |
+| `/` | Accueil : tableau de bord de démonstration interactif, avant/après, parcours, programme séance par séance, calculateur de temps gagné, formateur, tarifs, FAQ |
+| `/formations` | Catalogue filtrable par niveau et tableau comparatif |
+| `/formations/:slug` | Fiche détaillée d'un parcours, programme interactif, version imprimable |
+| `/entreprises` | Offre entreprises & ONG et formulaire de demande de devis |
+| `/a-propos` | Parcours du formateur et principes pédagogiques |
+| `/inscription` | Inscription en 4 étapes avec validation ; envoi par WhatsApp ou e-mail pré-rempli |
+| `/test-de-niveau` | Test de positionnement en 6 questions avec recommandation de parcours |
+
+Pour modifier un parcours (séances, outils, prérequis), éditez `src/data/courses.ts`.
+
+## Déploiement
+
+- **GitHub Pages** : https://oliviertina29.github.io/Tinalytics/ — à chaque push sur `main`, le workflow `.github/workflows/deploy-pages.yml` construit le site et le publie sur la branche `gh-pages` (Settings → Pages → Source : *Deploy from a branch*, `gh-pages` / `root`).
+- **Netlify** : construit `main` avec `npm run build` (publication de `dist/`).

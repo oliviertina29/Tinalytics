@@ -18,25 +18,112 @@
   body {
     @apply bg-cream font-sans text-ink antialiased;
   }
+  ::selection {
+    @apply bg-gold-light text-ink;
+  }
+  /* Grain léger sur tout le site */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    pointer-events: none;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  input,
+  select,
+  textarea {
+    @apply font-sans;
+  }
 }
 
 @layer components {
+  .container-site {
+    @apply mx-auto w-full max-w-site px-5 md:px-12 lg:px-24;
+  }
   .eyebrow {
-    @apply font-mono text-[13px] uppercase tracking-[1.5px] text-clay;
+    @apply inline-flex items-center gap-2.5 font-mono text-[12.5px] uppercase tracking-[1.8px] text-clay;
+  }
+  .eyebrow::before {
+    content: '';
+    @apply h-px w-7 bg-current;
+  }
+  .h1 {
+    @apply font-display text-[44px] font-semibold leading-[1] tracking-[-0.03em] sm:text-6xl lg:text-[84px];
   }
   .h2 {
-    @apply font-display text-4xl font-semibold leading-[1.08] tracking-tight md:text-[52px];
+    @apply font-display text-[36px] font-semibold leading-[1.05] tracking-[-0.025em] md:text-[54px];
+  }
+  .h3 {
+    @apply font-display text-2xl font-semibold leading-tight tracking-[-0.01em] md:text-[28px];
+  }
+  .lead {
+    @apply text-lg leading-relaxed text-body md:text-xl;
   }
   .btn {
-    @apply inline-flex h-14 items-center justify-center rounded-full px-7 text-[17px] font-semibold no-underline transition-colors;
+    @apply inline-flex h-14 select-none items-center justify-center gap-2.5 rounded-full px-7 text-[16.5px] font-semibold no-underline transition-all duration-200 active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50;
   }
   .btn-primary {
-    @apply btn bg-clay text-white hover:bg-clay-dark;
+    @apply btn bg-clay text-white shadow-[0_8px_24px_-8px_rgba(180,71,31,0.6)] hover:-translate-y-0.5 hover:bg-clay-dark;
+  }
+  .btn-dark {
+    @apply btn bg-ink text-cream hover:-translate-y-0.5 hover:bg-forest;
   }
   .btn-outline {
     @apply btn border-[1.5px] border-ink text-ink hover:bg-ink hover:text-cream;
   }
+  .btn-light {
+    @apply btn border-[1.5px] border-white/70 text-white hover:bg-white hover:text-ink;
+  }
   .chip {
-    @apply rounded-full bg-sand px-4 py-2 text-sm font-semibold;
+    @apply inline-flex items-center rounded-full bg-sand px-4 py-2 text-sm font-semibold;
+  }
+  .card {
+    @apply rounded-3xl border border-line bg-paper;
+  }
+  .field {
+    @apply h-14 w-full rounded-2xl border border-line bg-paper px-5 text-base text-ink outline-none transition placeholder:text-muted/70 focus:border-ink focus:ring-4 focus:ring-gold/25;
+  }
+  .label {
+    @apply mb-2 block text-sm font-semibold text-ink;
+  }
+  .bg-grid-dark {
+    background-image: linear-gradient(rgba(246, 241, 231, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(246, 241, 231, 0.06) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+  .bg-grid-light {
+    background-image: linear-gradient(rgba(27, 26, 23, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(27, 26, 23, 0.05) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .mask-fade-x {
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+  }
+}
+
+@media print {
+  body::after,
+  header,
+  footer,
+  .print\:hidden,
+  a[aria-label='Nous écrire sur WhatsApp'] {
+    display: none !important;
+  }
+  body {
+    background: #fff;
   }
 }
