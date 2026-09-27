@@ -12,6 +12,7 @@ type SiteConfig = {
   launchPrice: number | null;
   individualPrice: number | null;
   photo: string;
+  phoneDisplay: string;
 };
 
 export const SITE: SiteConfig = {
@@ -23,6 +24,7 @@ export const SITE: SiteConfig = {
   launchPrice: null,
   individualPrice: null,
   photo: `${import.meta.env.BASE_URL}olivier-tina.jpg`,
+  phoneDisplay: '+223 73 34 47 55',
 };
 
 export const whatsappUrl = SITE.whatsappNumber ? `https://wa.me/${SITE.whatsappNumber}` : null;
@@ -31,3 +33,11 @@ export const mailtoUrl = (subject?: string) =>
   `mailto:${SITE.email}${subject ? `?subject=${encodeURIComponent(subject)}` : ''}`;
 
 export const formatFcfa = (amount: number) => new Intl.NumberFormat('fr-FR').format(amount);
+
+/** Lien WhatsApp avec un message pré-rempli (null si aucun numéro n'est configuré). */
+export const whatsappMessageUrl = (text: string) =>
+  SITE.whatsappNumber ? `https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(text)}` : null;
+
+/** Lien e-mail avec objet et corps pré-remplis. */
+export const mailtoWithBody = (subject: string, body: string) =>
+  `mailto:${SITE.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;

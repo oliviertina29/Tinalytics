@@ -1,38 +1,33 @@
-import { Navbar } from './components/Navbar';
-import { Hero } from './components/Hero';
-import { Audience } from './components/Audience';
-import { Courses } from './components/Courses';
-import { Program } from './components/Program';
-import { Trainer } from './components/Trainer';
-import { HowItWorks } from './components/HowItWorks';
-import { Pricing } from './components/Pricing';
-import { Faq } from './components/Faq';
-import { Signup } from './components/Signup';
-import { Footer } from './components/Footer';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { MotionConfig } from 'framer-motion';
+import { Layout } from './components/Layout';
+import { HomePage } from './pages/HomePage';
+import { CoursesPage } from './pages/CoursesPage';
+import { CoursePage } from './pages/CoursePage';
+import { BusinessPage } from './pages/BusinessPage';
+import { AboutPage } from './pages/AboutPage';
+import { SignupPage } from './pages/SignupPage';
+import { QuizPage } from './pages/QuizPage';
+import { NotFoundPage } from './pages/NotFoundPage';
 
 function App() {
   return (
-    <div className="min-h-screen">
-      <a
-        href="#contenu"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-ink focus:px-5 focus:py-3 focus:text-cream"
-      >
-        Aller au contenu
-      </a>
-      <Navbar />
-      <main id="contenu">
-        <Hero />
-        <Audience />
-        <Courses />
-        <Program />
-        <Trainer />
-        <HowItWorks />
-        <Pricing />
-        <Faq />
-        <Signup />
-      </main>
-      <Footer />
-    </div>
+    <MotionConfig reducedMotion="user">
+      <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route index element={<HomePage />} />
+            <Route path="formations" element={<CoursesPage />} />
+            <Route path="formations/:slug" element={<CoursePage />} />
+            <Route path="entreprises" element={<BusinessPage />} />
+            <Route path="a-propos" element={<AboutPage />} />
+            <Route path="inscription" element={<SignupPage />} />
+            <Route path="test-de-niveau" element={<QuizPage />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </MotionConfig>
   );
 }
 
